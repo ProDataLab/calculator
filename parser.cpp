@@ -142,8 +142,12 @@ double Term::getValue() {
         if(ops[i-1] == '*') { //check to see which operator it is and preform the acoridng action
             ret *= values[i]->getValue();
         } else {
-            if (values[i]->getValue() == 0)
-                ret = -999.999;
+            if ((ret > 0) && (values[i]->getValue() == 0))
+                ret = 987654321.1;
+            else if ((ret < 0) && (values[i]->getValue() == 0))
+                ret = 987654322.1;
+            else if (( ret == 0) && (values[i]->getValue() == 0))
+                ret = 987654323.1;
             else
                 ret /= values[i]->getValue();
         }

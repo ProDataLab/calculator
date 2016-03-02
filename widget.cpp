@@ -8,7 +8,6 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-//    connect(ui->inputLineEdit, SIGNAL(textEdited(QString)), this, SLOT(on_lineEdit_textEdited(QString)));
 }
 
 Widget::~Widget()
@@ -16,10 +15,6 @@ Widget::~Widget()
     delete ui;
 }
 
-//void Widget::on_lineEdit_textEdited(const QString &arg1)
-//{
-
-//}
 
 void Widget::on_inputLineEdit_returnPressed()
 {
@@ -29,7 +24,13 @@ void Widget::on_inputLineEdit_returnPressed()
         std::stringstream ss(ui->inputLineEdit->text().toLatin1().data());
         Expr expr(ss);
         double ret = expr.getValue();
-        if (ret == -999.999) {
+        if (ret == 987654321.1) {
+            output = QString("Inf");
+        }
+        else if (ret == 987654322.1) {
+            output = QString("-Inf");
+        }
+        else if (ret == 987654323.1) {
             output = QString("NaN");
         }
         else
